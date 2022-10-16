@@ -17,4 +17,13 @@
 
 @section('script')
     @include('partial.map')
+    <script>
+        @if (!empty($shops))
+            @foreach ($shops as $shop)
+                L.marker([{{ $shop->latitude }},{{ $shop->longitude }}])
+                    .bindPopup('<a href="{{ route('shops.show', $shop) }}">{{ $shop->name }}</a>', {closeButton: false})
+                    .addTo(map);
+            @endforeach
+        @endif
+    </script>
 @endsection 

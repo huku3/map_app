@@ -31,4 +31,11 @@
 
 @section('script')
     @include('partial.map')
+    <script>
+        @if(!empty($shop))
+            var marker = L.marker([{{ $shop->latitude}}, {{ $shop->longitude}}])
+                .bindPopup("{{ $shop->name }}", {closeButton: false})
+                .addTo(map);
+        @endif
+    </script>
 @endsection 
