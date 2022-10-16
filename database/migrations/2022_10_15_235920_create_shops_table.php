@@ -25,6 +25,7 @@ class CreateShopsTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *
