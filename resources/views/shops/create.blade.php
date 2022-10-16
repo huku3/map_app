@@ -20,10 +20,15 @@
             <label for="address">住所:</label>
             <input type="text" name="address" id="address" value="{{ old('address') }}">
         </div>
+        <div id="map" style="height: 50vh;"></div>
         <div>
             <input type="submit" value="登録">
         </div>
     </form>
 
-    <a href="{{ route('shops.index') }}">一覧へ戻る</a>
+    <button type="button" onclick="location.href='{{ route('shops.index') }}'">一覧へ戻る</button>
 @endsection
+
+@section('script')
+    @include('partial.map')
+@endsection 

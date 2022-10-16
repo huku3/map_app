@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('title', '店舗情報')
+@section('title', '店舗情報修正')
 
 @section('content')
-    <h1>店舗情報</h1>
+    <h1>店舗情報修正</h1>
 
     <form action="{{ route('shops.update', $shop) }}" method="post">
         @csrf
@@ -20,6 +20,7 @@
             <label for="address">住所:</label>
             <input type="text" name="address" id="address" value="{{ old("address", $shop->address) }}">
         </div>
+        <div id="map" style="height:50vh;"></div>
         <div>
             <input type="submit" value="修正">
         </div>
@@ -27,3 +28,7 @@
 
     <a href="{{ route('shops.show', $shop) }}">詳細へ戻る</a>
 @endsection
+
+@section('script')
+    @include('partial.map')
+@endsection 
