@@ -15,7 +15,12 @@ class ShopController extends Controller
     public function index()
     {
         $shops = Shop::all();
-        return view('shops.index', compact('shops'));
+        // 取得したデータの中心地を求める
+        $latitude = $shops->average('latitude');
+        $longitude = $shops->average('longitude');
+        $zoom = 5;
+
+        return view('shops.index', compact('shops', 'latitude', 'longitude', 'zoom'));
         // return view('shops.index', ['shops' => $shops]);
     }
 
@@ -26,7 +31,12 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('shops.create');
+        // 最初に表示したい座標(今回は東京タワー)
+        $latitude = 35.658584;
+        $longitude = 139.7454316;
+        $zoom = 10;
+
+        return view('shops.create', compact('latitude', 'longitude', 'zoom'));
     }
 
     /**
@@ -58,7 +68,11 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return view('shops.show', compact('shop'));
+        $latitude = $shop->latitude;
+        $longitude = $shop->longitude;
+        $zoom = 12;
+
+        return view('shops.show', compact('shop', 'latitude', 'longitude', 'zoom'));
     }
 
     /**
@@ -69,7 +83,11 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        return view('shops.edit', compact('shop'));
+        $latitude = $shop->latitude;
+        $longitude = $shop->longitude;
+        $zoom = 12;
+
+        return view('shops.edit', compact('shop', 'latitude', 'longitude', 'zoom'));
     }
 
     /**
