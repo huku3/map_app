@@ -14,7 +14,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        return view('shops.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        return view('shops.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        //
+        return view('shops.show');
     }
 
     /**
@@ -57,7 +57,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        //
+        return view('shops.edit');
     }
 
     /**
