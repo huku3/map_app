@@ -14,7 +14,9 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('shops.index');
+        $shops = Shop::all();
+        return view('shops.index', compact('shops'));
+        // return view('shops.index', ['shops' => $shops]);
     }
 
     /**
@@ -35,7 +37,17 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shop = new Shop();
+
+        $shop->name = $request->name;
+        $shop->description = $request->description;
+        $shop->address = $request->address;
+        $shop->latitude = $request->latitude;
+        $shop->longitude = $request->longitude;
+
+        $shop->save();
+
+        return redirect()->route('shops.index');
     }
 
     /**
@@ -46,7 +58,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return view('shops.show');
+        return view('shops.show', compact('shop'));
     }
 
     /**
@@ -57,7 +69,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        return view('shops.edit');
+        return view('shops.edit', compact('shop'));
     }
 
     /**
@@ -69,7 +81,15 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        $shop->name = $request->name;
+        $shop->description = $request->description;
+        $shop->address = $request->address;
+        $shop->latitude = $request->latitude;
+        $shop->longitude = $request->longitude;
+
+        $shop->save();
+
+        return redirect()->route('shops.index');
     }
 
     /**
@@ -80,6 +100,7 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        //
+        $shop->delete();
+        return redirect()->route('shops.index');
     }
 }
